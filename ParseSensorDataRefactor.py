@@ -422,6 +422,8 @@ def plot_direction_vector(quat_ts, quat_unfiltered=np.nan):
     else:
         plt.legend(['x filtered', 'y filtered'])
 
+    plt.title('Orientation of local (0,1,0) vector in global coordinates vs time')
+
     plt.show()
 
 
@@ -474,7 +476,7 @@ stepping_range = range(750, 1500)
 world_accel = world_accel[stepping_range]
 
 # Computes stance
-stance = find_stance(world_accel, 4)
+stance = find_stance(world_accel, 1)
 
 # Add stance period 0.25s before calculated stance periods
 for i in range(stance.shape[0]):
@@ -579,6 +581,7 @@ global_accels -= np.array([0, -1, 0])
 plt.figure()
 plt.plot(global_accels[200:-1])
 plt.plot(user_acc[200:-1])
+plt.title('linear (gravity-corrected) acceleration data')
 plt.show()
 
 ### GRAVITY DATA FROM PS IS TOO FILTERED
